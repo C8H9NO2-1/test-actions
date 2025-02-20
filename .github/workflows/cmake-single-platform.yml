@@ -39,5 +39,5 @@ jobs:
       
       with:
         name: test
-        path: HelloWorld
+        path: build/HelloWorld
 
