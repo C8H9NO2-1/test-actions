@@ -29,11 +29,9 @@ jobs:
     - name: Build
       # Build your program with the given configuration
       run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}; ls build
-    - uses: actions/upload-artifact@v4
-      
-      with:
-        name: test
-        path: build/HelloWorld
+
+    - name: test
+      run: ping -c 1 localhost
 
     - name: Nexus Repo Publish
       uses: sonatype-nexus-community/nexus-repo-github-action@master
