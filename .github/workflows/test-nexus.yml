@@ -20,6 +20,27 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    - name: install ninja
+      run: sudo apt install ninja-build
+
+    - name: prepare vcpkg
+      run: git clone https://github.com/microsoft/vcpkg.git ~/vcpkg; ~/vcpkg/bootstrap-vcpkg.sh
+
+    - name: Configure CMake
+      # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
+      # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
+      # run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+      run: cmake --preset=default
+
+    - name: Build
+      # Build your program with the given configuration
+      run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}; ls build
+    - uses: actions/upload-artifact@v4
+      
+      with:
+        name: test
+        path: build/HelloWorld
+
     - name: Nexus Repo Publish
       uses: sonatype-nexus-community/nexus-repo-github-action@master
       with:
@@ -30,4 +51,4 @@ jobs:
         repository: raw-github-action-test
         coordinates: directory=nexus-repo-github-action-test-rawrepodir
         assets: filename=gh-action-test
-        filename: ./CMakeLists.txt
+        filename: ./build/HelloWorld
