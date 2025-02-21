@@ -35,3 +35,9 @@ jobs:
 
     - name: Nexus Repo Publish
       run: curl -v -u ${{ secrets.nxrm_user }}:${{ secrets.nxrm_password }} -X POST 'http://localhost:8081/service/rest/v1/components?repository=test' -F raw.directory=path -F raw.asset1=@build/HelloWorld -F raw.asset1.filename=test
+
+    - name: Nexus Repo Get
+      run: curl -v -u ${{ secrets.nxrm_user }}:${{ secrets.nxrm_password }} 'http://localhost:8081/repository/test/path/test' --output test; chmod 0777 test;
+    
+    - name: exec
+      run: ./test
