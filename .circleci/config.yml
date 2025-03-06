@@ -28,6 +28,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: "Install ninja"
+          command: "sudo apt install ninja"
+      - run:
           name: "Configure CMake"
           command: "cmake --preset=default"
 
