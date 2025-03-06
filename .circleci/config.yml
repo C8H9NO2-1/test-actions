@@ -23,13 +23,13 @@ jobs:
           command: "echo Hello, Again!"
   build:
     docker:
-      - image: ubuntu:latest
+      - image: ubuntu-latest
 
     steps:
       - checkout
       - run:
           name: "Install ninja"
-          command: "apt install ninja-build"
+          command: "sudo apt install ninja-build"
       - run:
           name: "Configure CMake"
           command: "cmake --preset=default"
