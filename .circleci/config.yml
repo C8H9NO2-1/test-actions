@@ -23,7 +23,7 @@ jobs:
           command: "echo Hello, Again!"
   build:
     docker:
-      - image: ubuntu-latest
+      - image: ubuntu
 
     steps:
       - checkout
