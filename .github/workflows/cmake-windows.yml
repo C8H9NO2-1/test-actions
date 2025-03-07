@@ -20,8 +20,8 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    # - name: install ninja
-    #   run: sudo apt install ninja-build
+    - name: install ninja
+      run: curl
 
     - name: prepare vcpkg
       run: git clone https://github.com/microsoft/vcpkg.git vcpkg; ls; .\vcpkg\bootstrap-vcpkg.bat
