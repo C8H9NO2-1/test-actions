@@ -36,6 +36,9 @@ jobs:
       - run:
           name: "Configure CMake"
           command: "cmake --preset=default"
+      - run:
+          name: "Build"
+          command: "cmake --build build --config Debug; ls build"
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/workflows/ & https://circleci.com/docs/configuration-reference/#workflows
