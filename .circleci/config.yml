@@ -23,7 +23,7 @@ jobs:
           command: "echo Hello, Again!"
   build:
     docker:
-      - image: cimg/base
+      - image: cimg/base:current
 
     steps:
       - checkout
