@@ -21,8 +21,7 @@ jobs:
     - uses: actions/checkout@v4
 
     - name: install ninja
-      run: pwd; echo ${{github.workspace}}
-      # run: curl -O -L https://github.com/ninja-build/ninja/releases/download/v1.12.1/ninja-win.zip; unzip ninja-win.zip; Add-Content $env:GITHUB_PATH "C:\directory\to\add\to\path"
+      run: curl -O -L https://github.com/ninja-build/ninja/releases/download/v1.12.1/ninja-win.zip; unzip ninja-win.zip; Add-Content $env:GITHUB_PATH "${{github.workspace}}"
 
     - name: prepare vcpkg
       run: git clone https://github.com/microsoft/vcpkg.git vcpkg; ls; .\vcpkg\bootstrap-vcpkg.bat
