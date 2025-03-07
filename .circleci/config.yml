@@ -29,7 +29,7 @@ jobs:
       - checkout
       - run:
           name: "Install ninja"
-          command: "sudo apt install ninja_build"
+          command: "sudo wget -qO /usr/local/bin/ninja.gz https://github.com/ninja-build/ninja/releases/latest/download/ninja-linux.zip;sudo gunzip /usr/local/bin/ninja.gz;sudo chmod a+x /usr/local/bin/ninja;ninja --version"
       - run:
           name: "Configure CMake"
           command: "cmake --preset=default"
