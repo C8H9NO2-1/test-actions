@@ -24,7 +24,7 @@ jobs:
       run: curl -O -L https://github.com/ninja-build/ninja/releases/download/v1.12.1/ninja-win.zip; unzip ninja-win.zip; Add-Content $env:GITHUB_PATH "${{github.workspace}}"; echo "$PATH"
 
     - name: trying stuff
-      run: echo "$PATH"
+      run: echo "%PATH%"
 
     - name: prepare vcpkg
       run: git clone https://github.com/microsoft/vcpkg.git vcpkg; ls; .\vcpkg\bootstrap-vcpkg.bat
