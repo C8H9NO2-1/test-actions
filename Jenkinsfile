@@ -1,9 +1,9 @@
 pipeline {
-    agent none
+    agent any
     stages {
-        stage('build') {
+        stage('test') {
             steps {
-                sh 'node --version'
+                sh 'ls',
             }
         }
     }
