@@ -26,12 +26,6 @@ jobs:
 
     - name: Setup Ninja
       uses: seanmiddleditch/gha-setup-ninja@v5
-
-    - name: Build Project
-      uses: threeal/cmake-action@v2.1.0
-      with:
-        generator: Ninja
-        run-build: false
         
     - name: trying stuff
       run: ninja --version
@@ -45,11 +39,12 @@ jobs:
       # run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
       run: ninja --version; cmake --preset=default
 
-    - name: Build
-      # Build your program with the given configuration
-      run: ls; ls build; cmake --build ${{github.workspace}}\build --config ${{env.BUILD_TYPE}}; ls build
+    - name: Build Project
+      uses: threeal/cmake-action@v2.1.0
+      with:
+        generator: Ninja
+
     - uses: actions/upload-artifact@v4
-      
       with:
         name: test
         path: build/HelloWorld
