@@ -11,6 +11,7 @@ env:
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
   BUILD_TYPE: Debug
   VCPKG_ROOT: ${{github.workspace}}\vcpkg
+  CMAKE_MAKE_PROGRAM: Ninja
  
 jobs:
    build:
