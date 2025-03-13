@@ -37,6 +37,8 @@ jobs:
  
     steps:
     - uses: actions/checkout@v4
+
+    - uses: ilammy/msvc-dev-cmd@v1
  
     - name: install ninja
       uses: seanmiddleditch/gha-setup-ninja@v6
@@ -50,7 +52,7 @@ jobs:
       run: git clone https://github.com/microsoft/vcpkg.git $VCPKG_ROOT; ls; ${{env.VCPKG_ROOT}}\bootstrap-vcpkg.bat
  
     - name: Configure CMake
-      run: ninja --version; cmake --preset=default -DCMAKE_CXX_COMPILER="C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/Tools/MSVC/14.43.34808/bin/Hostx64/x64/cl.exe" -DCMAKE_C_COMPILER="C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/Tools/MSVC/14.43.34808/bin/Hostx64/x64/cl.exe"
+      run: ninja --version; cmake --preset=default -DCMAKE_CXX_COMPILER="cl" -DCMAKE_C_COMPILER="cl"
 
     - name: Build Project
       uses: threeal/cmake-action@v2.1.0
