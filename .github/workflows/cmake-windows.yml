@@ -20,32 +20,15 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: install ninja
-      uses: seanmiddleditch/gha-setup-ninja@v6
-      # run: mkdir nin; curl -O -L https://github.com/ninja-build/ninja/releases/download/v1.12.1/ninja-win.zip; unzip ninja-win.zip; ls; mv ninja-win.exe nin; Add-Content $env:GITHUB_PATH "${{github.workspace}}/nin"; echo "$PATH"
+    - uses: lukka/get-cmake@latest
 
-    - name: Setup Ninja
-      uses: seanmiddleditch/gha-setup-ninja@v5
-        
-    - name: trying stuff
-      run: ninja --version
+    - name: Setup anew (or from cache) vcpkg (and does not build any package)
+      uses: lukka/run-vcpkg@v11
 
-    - name: prepare vcpkg
-      run: git clone https://github.com/microsoft/vcpkg.git vcpkg; ls; .\vcpkg\bootstrap-vcpkg.bat
-
-    - name: Configure CMake
-      # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
-      # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
-      # run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
-      run: ninja --version; cmake --preset=default
-
-    - name: Build Project
-      uses: threeal/cmake-action@v2.1.0
+    - name: Run CMake consuming CMakePreset.json and run vcpkg to build packages
+      uses: lukka/run-cmake@v10
       with:
-        generator: Ninja
+          configurePreset: 'ninja-multi-vcpkg'
 
-    - uses: actions/upload-artifact@v4
-      with:
-        name: test
-        path: build/HelloWorld
-
+          buildPreset: 'ninja-multi-vcpkg'
+          buildPresetAdditionalArgs: "['--config Debug']"
