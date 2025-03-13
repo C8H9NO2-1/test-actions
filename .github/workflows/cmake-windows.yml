@@ -10,6 +10,7 @@ on:
 env: 
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
   BUILD_TYPE: Debug
+  VCPKG_ROOT: ${{github.workspace}}/vcpkg
  
 jobs:
   build:
@@ -27,7 +28,7 @@ jobs:
       run: ninja --version
  
     - name: prepare vcpkg
-      run: git clone https://github.com/microsoft/vcpkg.git ~/vcpkg; ls; ~\vcpkg\bootstrap-vcpkg.bat
+      run: git clone https://github.com/microsoft/vcpkg.git ${{VCPKG_ROOT}}; ls; .\${{VCPKG_ROOT}}\bootstrap-vcpkg.bat
  
     - name: Configure CMake
       run: ninja --version; cmake --preset=default
