@@ -1,34 +1,38 @@
 # This starter workflow is for a CMake project running on a single platform. There is a different starter workflow if you need cross-platform coverage.
+ 
 # See: https://github.com/actions/starter-workflows/blob/main/ci/cmake-multi-platform.yml
+ 
 name: CMake on Windows
-
 on:
   pull_request:
     branches: [ "main" ]
 
-env:
+env: 
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
   BUILD_TYPE: Debug
-
+ 
 jobs:
   build:
-    # The CMake configure and build commands are platform agnostic and should work equally well on Windows or Mac.
-    # You can convert this to a matrix build if you need cross-platform coverage.
-    # See: https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
     runs-on: windows-latest
-
+ 
     steps:
     - uses: actions/checkout@v4
+ 
+    - name: install ninja
+      uses: seanmiddleditch/gha-setup-ninja@v6
+ 
+      # run: mkdir nin; curl -O -L https://github.com/ninja-build/ninja/releases/download/v1.12.1/ninja-win.zip; unzip ninja-win.zip; ls; mv ninja-win.exe nin; Add-Content $env:GITHUB_PATH "${{github.workspace}}/nin"; echo "
+  
+    - name: trying stuff
+      run: ninja --version
+ 
+    - name: prepare vcpkg
+      run: git clone https://github.com/microsoft/vcpkg.git vcpkg ~/vcpkg; ls; ~\vcpkg\bootstrap-vcpkg.bat
+ 
+    - name: Configure CMake
+      run: ninja --version; cmake --preset=default
 
-    - uses: lukka/get-cmake@latest
-
-    - name: Setup anew (or from cache) vcpkg (and does not build any package)
-      uses: lukka/run-vcpkg@v11
-
-    - name: Run CMake consuming CMakePreset.json and run vcpkg to build packages
-      uses: lukka/run-cmake@v10
+    - name: Build Project
+      uses: threeal/cmake-action@v2.1.0
       with:
-          configurePreset: 'ninja-multi-vcpkg'
-
-          buildPreset: 'ninja-multi-vcpkg'
-          buildPresetAdditionalArgs: "['--config Debug']"
+        generator: Ninja
