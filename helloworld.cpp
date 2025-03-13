@@ -2,7 +2,7 @@
 
 int main()
 {
-    //fmt::print("Hello World!\n");
-    //fmt::print("We are not there yet...\n");
+    fmt::print("Hello World!\n");
+    fmt::print("We are not there yet...\n");
     return 0;
 }
