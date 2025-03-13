@@ -25,3 +25,5 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm install
+    - run: npx tsc main.ts
+    - run: node main.ts
