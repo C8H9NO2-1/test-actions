@@ -31,6 +31,7 @@ jobs:
       uses: threeal/cmake-action@v2.1.0
       with:
         generator: Ninja
+        run-build: false
         
     - name: trying stuff
       run: ninja --version
