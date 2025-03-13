@@ -3,6 +3,7 @@
     "version": "0.0.1",
     "description": "Test Project 1",
     "dependencies" : {
-        "commonjs" : "0.0.1"
+        "commonjs" : "0.0.1",
+        "@types/node": "22.13.10"
     }
 }
