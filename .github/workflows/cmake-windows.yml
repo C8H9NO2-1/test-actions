@@ -28,7 +28,7 @@ jobs:
       run: ninja --version
  
     - name: prepare vcpkg
-      run: git clone https://github.com/microsoft/vcpkg.git $VCPKG_ROOT; ls; .\vcpkg\bootstrap-vcpkg.bat
+      run: git clone https://github.com/microsoft/vcpkg.git $VCPKG_ROOT; ls; ${{env.VCPKG_ROOT}}\bootstrap-vcpkg.bat
  
     - name: Configure CMake
       run: ninja --version; cmake --preset=default
