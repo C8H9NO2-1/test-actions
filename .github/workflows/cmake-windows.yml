@@ -31,7 +31,7 @@ jobs:
       run: git clone https://github.com/microsoft/vcpkg.git $VCPKG_ROOT; ls; ${{env.VCPKG_ROOT}}\bootstrap-vcpkg.bat
  
     - name: Configure CMake
-      run: ninja --version; cmake --preset=default
+      run: ninja --version; cmake --preset=default DCMAKE_CXX_COMPILER=cl -DCMAKE_C_COMPILER=cl
 
     - name: Build Project
       uses: threeal/cmake-action@v2.1.0
