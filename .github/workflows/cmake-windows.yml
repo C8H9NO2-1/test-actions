@@ -5,7 +5,7 @@
 name: CMake on Windows
 on:
   pull_request:
-    branches: [ "main" ]
+    branches: [ "master" ]
 
 env: 
   # Customize the CMake build type here (Release, Debug, RelWithDebInfo, etc.)
