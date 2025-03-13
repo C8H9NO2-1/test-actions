@@ -4,6 +4,7 @@ type User = {
 };
 
 function isAdult(user: User): boolean {
+  console.log(user.age);
   return user.age >= 18;
 }
 
