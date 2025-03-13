@@ -5,7 +5,7 @@ name: Node.js CI
 
 on:
   pull_request:
-    branches: [ "master" ]
+    branches: [ "main" ]
 
 jobs:
   build:
@@ -26,4 +26,4 @@ jobs:
         cache: 'npm'
     - run: npm install
     - run: npx tsc main.ts
-    - run: node main.ts
+    - run: node main.js
