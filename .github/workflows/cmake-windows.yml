@@ -24,6 +24,14 @@ jobs:
       uses: seanmiddleditch/gha-setup-ninja@v6
       # run: mkdir nin; curl -O -L https://github.com/ninja-build/ninja/releases/download/v1.12.1/ninja-win.zip; unzip ninja-win.zip; ls; mv ninja-win.exe nin; Add-Content $env:GITHUB_PATH "${{github.workspace}}/nin"; echo "$PATH"
 
+    - name: Setup Ninja
+      uses: seanmiddleditch/gha-setup-ninja@v5
+
+    - name: Build Project
+      uses: threeal/cmake-action@v2.1.0
+      with:
+        generator: Ninja
+        
     - name: trying stuff
       run: ninja --version
 
